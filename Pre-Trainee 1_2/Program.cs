@@ -31,9 +31,10 @@ namespace Pre_Trainee_1_2
             Console.WriteLine($"Синхронные методы затратили {sw.Elapsed}");
 
             sw.Restart();
-            ProcessDataAsync("File1");
-            ProcessDataAsync("File2");
-            await ProcessDataAsync("File3");
+            var task1 = ProcessDataAsync("File1");
+            var task2 = ProcessDataAsync("File2");
+            var task3 = ProcessDataAsync("File3");
+            await Task.WhenAll(task1, task2, task3);
             sw.Stop();
             Console.WriteLine($"Асинхронные методы затратили {sw.Elapsed}");
             
